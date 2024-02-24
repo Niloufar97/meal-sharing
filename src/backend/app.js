@@ -36,7 +36,7 @@ app.get("/future-meals", async (req, res) => {
       res.status(200).json({data : futureMeals , message: "ok"});
     }catch(err){
       console.error(err)
-      res.status(500).json({data : null , message : "An error"});
+      res.status(500).json({data : null , message : "server error"});
     }
 });
 
@@ -52,7 +52,7 @@ app.get("/past-meals", async (req, res) => {
     res.status(404).json({data: pastMeals , message : "ok"});
   }catch(err){
     console.error(err)
-    res.status(500).json({data : null , message : "An error occurred"});
+    res.status(500).json({data : null , message : "server error"});
   }
 });
 
@@ -66,7 +66,7 @@ app.get("/all-meals", async (req, res) => {
     res.status(200).json(allMeals);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: 'server error' });
   }
 });
 
@@ -80,7 +80,7 @@ app.get("/first-meal" , async (req, res) => {
 
   }catch(err){
     console.error(error);
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: 'server error' });
   }
 });
 
@@ -94,7 +94,7 @@ app.get("/last-meal" , async (req, res) => {
     res.status(200).json({data: lastMeal , message: "ok"})
   }catch(err){
     console.error(error);
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: 'server error' });
   }
 });
 
