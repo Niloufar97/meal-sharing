@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use(cors());
 
-router.use("/meals", mealsRouter);
+app.use("/meals", mealsRouter);
 
 // Respond with all meals in the future (relative to the when datetime)
 app.get("/future-meals", async (req, res) => {
