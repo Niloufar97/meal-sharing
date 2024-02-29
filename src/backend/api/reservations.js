@@ -53,5 +53,17 @@ router.post("/", async(req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 });
-
+// Returns a reservation by id
+router.get("/:id" , async(req, res) => {
+    try{
+        const reservationId = req.params.id;
+        const reservation = await knex("Reservation").where("reservation_id", "=", reservationId).select();
+        if(reservation.length === 0){
+            return res.status(404).json({message: "Reservation not found"})
+        }
+        res.status(200).json({data: reservation , message :"ok"})
+    }catch (error){
+        return res.status(500).json({ message: "Internal server error" });
+    };
+})
 module.exports = router;
