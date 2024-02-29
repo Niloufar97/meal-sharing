@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("../database");
+const joi = require("joi")
+
+const MealSchema = joi.object({
+  title : joi.string().required(),
+  description: joi.string(),
+  location: joi.string().required(),
+  _when : joi.date().iso().required(),
+  max_reservations: joi.number().integer().min(1).required(),
+  price: joi.number().min(0).required(),
+  created_date : joi.date().iso()
+});
 
 // Returns all meals
 router.get("/", async (request, response) => {
@@ -15,6 +26,11 @@ router.get("/", async (request, response) => {
 // 	Adds a new meal to the database
 router.post("/", async (req, res) => {
   try {
+    const {error} = MealSchema.validate(req.body, { abortEarly: false });
+    if(error){
+      const errorMessages = error.details.map(detail => detail.message);
+      return res.status(400).json({ errors: errorMessages });
+    }
     const {
       title,
       description,
@@ -62,6 +78,11 @@ router.get("/:id", async (req, res) => {
 // Updates the meal by id
 router.put("/:id", async (req, res) => {
   try {
+    const {error} = MealSchema.validate(req.body , {abortEarly : false})
+    if(error){
+      const errorMessages = error.details.map(detail => detail.message);
+      return res.status(400).json({errors : errorMessages})
+    }
     const mealId = +req.params.id;
     const {
       title,
