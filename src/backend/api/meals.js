@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       created_date,
     });
 
-    res.status(201).json({message: "new meal added" });
+    res.status(201).json({message: "new meal added successfully" });
   } catch (err) {
     console.error("Error adding meal:", err);
     res.status(500).json({ error: "Internal server error" });
@@ -89,6 +89,22 @@ router.put("/:id", async (req, res) => {
       }
     res.status(200).json({ message: "meal updated"})
   } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Deletes the meal by id
+router.delete("/:id" , async(req, res) => {
+  try{
+    const mealId = +req.params.id;
+    const deletedMeal = 
+    await knex("Meal").where("meal_id" , "=" , mealId).del();
+    if(!deletedMeal){
+      res.status(404).json({message: "There is no meal with this Id"})
+    }
+    res.status(200).json({message : "Meal deleted successfully"})
+  }catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
   }
