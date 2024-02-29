@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
       created_date,
     } = req.body;
 
-    const newMeal = await knex("Meal").insert({
+    await knex("Meal").insert({
       title,
       description,
       location,
@@ -34,7 +34,8 @@ router.post("/", async (req, res) => {
       price,
       created_date,
     });
-    res.status(201).json({ message: "new meal added" });
+
+    res.status(201).json({message: "new meal added" });
   } catch (err) {
     console.error("Error adding meal:", err);
     res.status(500).json({ error: "Internal server error" });
@@ -58,6 +59,39 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Updates the meal by id
+router.put("/:id", async (req, res) => {
+  try {
+    const mealId = +req.params.id;
+    const {
+      title,
+      description,
+      location,
+      _when,
+      max_reservations,
+      price,
+      created_date,
+    } = req.body;
 
+    const updatedMeal = await knex("Meal")
+      .where("meal_id", "=", mealId)
+      .update({
+        title,
+        description,
+        location,
+        _when,
+        max_reservations,
+        price,
+        created_date,
+      });
+      if(updatedMeal === 0){
+        res.status(404).json({message : "There is no meal with this Id"})
+      }
+    res.status(200).json({ message: "meal updated"})
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 module.exports = router;
