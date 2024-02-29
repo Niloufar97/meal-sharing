@@ -65,5 +65,42 @@ router.get("/:id" , async(req, res) => {
     }catch (error){
         return res.status(500).json({ message: "Internal server error" });
     };
+});
+
+// 	Updates the reservation by id
+router.put("/:id" , async(req, res) =>{
+    try{
+        const reservationId = req.params.id;
+        const {error} = reservationSchema.validate(req.body , {abortEarly : false});
+        if(error){
+            const errorMessages = error.details.map(detail => detail.message);
+            return res.status(400).json({errors : errorMessages})
+        }
+        const {
+            number_of_guests,
+            meal_id,
+            created_date,
+            contact_phonenumber,
+            contact_name,
+            contact_email,
+        } = req.body;
+
+        const updatedReservation = await knex("Reservation").where("reservation_id" , "=" , reservationId).update({
+            number_of_guests,
+            meal_id,
+            created_date,
+            contact_phonenumber,
+            contact_name,
+            contact_email,
+        })
+        if(!updatedReservation){
+            return res.status(404).json({message: " Can not find reservation with this id "})
+        }
+        res.status(200).json({message: "Reservation updated "});
+
+    }catch (error){
+        return res.status(500).json({ message: "Internal server error" });
+    };
+
 })
 module.exports = router;
