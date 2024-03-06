@@ -4,7 +4,7 @@ import mealsRouter from "./api/meals.js";
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import knex from 'knex'
+import knex from './database.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
