@@ -17,7 +17,7 @@ const MealSchema = joi.object({
 router.get("/", async (request, response) => {
   try {
     const allMeals = await knex("Meal").select();
-    response.json(allMeals);
+    response.json({allMeals});
   } catch (error) {
     throw error;
   }
@@ -65,9 +65,6 @@ router.get("/:id", async (req, res) => {
     const selectedMeal = await knex("Meal")
       .where("meal_id", "=", mealId)
       .select();
-    if (selectedMeal.length === 0) {
-      return res.status(404).json({ data: null, message: "not found" });
-    }
     res.status(200).json({ data: selectedMeal, message: "ok" });
   } catch (err) {
     console.error(err);
@@ -94,7 +91,7 @@ router.put("/:id", async (req, res) => {
       created_date,
     } = req.body;
 
-    const updatedMeal = await knex("Meal")
+    await knex("Meal")
       .where("meal_id", "=", mealId)
       .update({
         title,
@@ -105,9 +102,6 @@ router.put("/:id", async (req, res) => {
         price,
         created_date,
       });
-      if(updatedMeal === 0){
-        res.status(404).json({message : "There is no meal with this Id"})
-      }
     res.status(200).json({ message: "meal updated"})
   } catch (err) {
     console.error(err);
@@ -119,12 +113,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id" , async(req, res) => {
   try{
     const mealId = +req.params.id;
-    const deletedMeal = 
     await knex("Meal").where("meal_id" , "=" , mealId).del();
-    if(!deletedMeal){
-      res.status(404).json({message: "There is no meal with this Id"})
-    }
-    res.status(200).json({message : "Meal deleted successfully"})
+    res.status(200).json({message : "Meal deleted successfully"});
+    
   }catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
