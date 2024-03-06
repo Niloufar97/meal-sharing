@@ -1,18 +1,20 @@
-const express = require("express");
+import express from "express";
+import path from "path";
+import mealsRouter from "./api/meals.js";
+import cors from "cors";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import knex from 'knex'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const buildPath = path.join(__dirname, "../../dist");
 const app = express();
 const router = express.Router();
-const path = require("path");
-
-const mealsRouter = require("./api/meals");
-const reservationRouter = require('./api/reservations');
-
-const buildPath = path.join(__dirname, "../../dist");
-const port = process.env.PORT || 3000;
-const cors = require("cors");
-const knex = require("./database");
 
 // For week4 no need to look into this!
 // Serve the built client html
+
 app.use(express.static(buildPath));
 
 // Parse URL-encoded bodies (as sent by HTML forms)
@@ -112,4 +114,4 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(`${buildPath}/index.html`));
 });
 
-module.exports = app;
+export default app;
