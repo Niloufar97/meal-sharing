@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import knex from "../database.js";
-const joi = require("joi")
+import joi from 'joi';
 
 const MealSchema = joi.object({
   title : joi.string().required(),

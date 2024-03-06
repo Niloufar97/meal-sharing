@@ -1,10 +1,12 @@
 import express from "express";
 import path from "path";
 import mealsRouter from "./api/meals.js";
+import reservationRouter from "./api/reservations.js"
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import knex from 'knex'
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

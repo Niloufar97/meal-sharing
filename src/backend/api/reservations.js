@@ -1,6 +1,7 @@
-const express = require("express");
-const knex = require("../database");
-const joi = require("joi");
+import express from "express"
+import knex from "../database.js";
+import joi from "joi"
+
 const router = express.Router();
 
 const reservationSchema = joi.object({
@@ -116,4 +117,4 @@ router.delete("/:id" , async(req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     };   
 });
-module.exports = router;
+export default router;
