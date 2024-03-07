@@ -19,7 +19,12 @@ router.get("/", async (req, res) => {
   const {maxPrice , availableReservations, title, dateAfter, dateBefore, limit, sortKey, sortDir} = req.query
   
   try {
-    let response = {};
+    let response = {
+      data: [],
+      status: 200,
+      message: "ok",
+    };
+   
     if(maxPrice) await getMealsUnderMaxPrice(maxPrice, response);
     
     if(availableReservations) await getAvailableReservations(availableReservations, response);
@@ -32,7 +37,12 @@ router.get("/", async (req, res) => {
 
     if(limit) await getLimitedMeals(limit, response);
 
-    if(sortKey) await getSortedMeals(sortKey, sortDir, response)
+    if(sortKey) await getSortedMeals(sortKey, sortDir, response);
+
+    if(Object.keys(req.query).length === 0){
+      const allMeals = await knex('Meal').select('*')
+      response.data = allMeals
+    }
 
     res.status(response.status).json({data : response.data , message : response.message})
   } catch (error) {
