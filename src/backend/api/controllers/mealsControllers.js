@@ -5,7 +5,7 @@ export async function getMealsUnderMaxPrice(maxPrice, response) {
   response.data = mealsUnderMaxPrice;
   response.status = 200;
   response.message = "ok";
-}
+};
 
 export async function getAvailableReservations(
   availableReservations,
@@ -43,7 +43,7 @@ export async function getAvailableReservations(
     response.status = 200;
     response.message = "ok";
   }
-}
+};
 
 export async function getMealWithTitle(title, response) {
   const mealWithTitle = await knex("Meal")
@@ -52,7 +52,7 @@ export async function getMealWithTitle(title, response) {
   response.data = mealWithTitle;
   response.status = 200;
   response.message = "ok";
-}
+};
 
 export async function getMealAfterDate(dateAfter, response) {
   const mealAfterDate = await knex("Meal")
@@ -61,7 +61,7 @@ export async function getMealAfterDate(dateAfter, response) {
   response.data = mealAfterDate;
   response.status = 200;
   response.message = "ok";
-}
+};
 
 export async function getMealBeforeDate(beforeDate, response) {
   const mealBeforeDate = await knex("Meal")
@@ -70,7 +70,7 @@ export async function getMealBeforeDate(beforeDate, response) {
   response.data = mealBeforeDate;
   response.status = 200;
   response.message = "ok";
-}
+};
 
 export async function getLimitedMeals(limit, response) {
   const limitedMeals = await knex("Meal")
@@ -79,7 +79,7 @@ export async function getLimitedMeals(limit, response) {
   response.data = limitedMeals;
   response.status = 200;
   response.message = "ok";
-}
+};
 
 export async function getSortedMeals(sortKey, sortDir, response){
     const validSortKeys = ["when", "max_reservations", "price"];
@@ -96,4 +96,4 @@ export async function getSortedMeals(sortKey, sortDir, response){
     response.data = sortedMeals;
     response.status = 200;
     response.message = "ok";
-}
+};
