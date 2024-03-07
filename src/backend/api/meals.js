@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import knex from "../database.js";
 import joi from "joi";
+import {getMealsUnderMaxPrice ,getAvailableReservations, getMealWithTitle, getMealAfterDate, getMealBeforeDate, getLimitedMeals, getSortedMeals } from './controllers/mealsControllers.js'
 
 const MealSchema = joi.object({
   title : joi.string().required(),
@@ -14,10 +15,26 @@ const MealSchema = joi.object({
 });
 
 // Returns all meals
-router.get("/", async (request, response) => {
+router.get("/", async (req, res) => {
+  const {maxPrice , availableReservations, title, dateAfter, dateBefore, limit, sortKey} = req.query
+  
   try {
-    const allMeals = await knex("Meal").select();
-    response.json({allMeals});
+    let response = {};
+    if(maxPrice) await getMealsUnderMaxPrice(maxPrice, response);
+    
+    if(availableReservations) await getAvailableReservations(availableReservations, response);
+
+    if(title) await getMealWithTitle(title, response);
+
+    if(dateAfter) await getMealAfterDate(dateAfter, response);
+
+    if(dateBefore) await getMealBeforeDate(dateBefore , response);
+
+    if(limit) await getLimitedMeals(limit, response);
+
+    if(sortKey) await getSortedMeals(sortKey, response)
+
+    res.status(response.status).json({data : response.data , message : response.message})
   } catch (error) {
     throw error;
   }
