@@ -30,23 +30,8 @@ router.post("/", async(req, res) => {
         const errorMessages = error.details.map(detail => detail.message);
         return res.status(400).json({error : errorMessages})
     }
-    const {
-      number_of_guests,
-      meal_id,
-      created_date,
-      contact_phonenumber,
-      contact_name,
-      contact_email,
-    } = req.body;
 
-    await knex("Reservation").insert({
-      number_of_guests,
-      meal_id,
-      created_date,
-      contact_phonenumber,
-      contact_name,
-      contact_email,
-    });
+    await knex("Reservation").insert(req.body);
 
     res.status(201).json({message : "Reservation added successfully"})
   }catch (error){
@@ -76,23 +61,8 @@ router.put("/:id" , async(req, res) =>{
             const errorMessages = error.details.map(detail => detail.message);
             return res.status(400).json({errors : errorMessages})
         }
-        const {
-            number_of_guests,
-            meal_id,
-            created_date,
-            contact_phonenumber,
-            contact_name,
-            contact_email,
-        } = req.body;
 
-        const updatedReservation = await knex("Reservation").where("reservation_id" , "=" , reservationId).update({
-            number_of_guests,
-            meal_id,
-            created_date,
-            contact_phonenumber,
-            contact_name,
-            contact_email,
-        })
+        const updatedReservation = await knex("Reservation").where("reservation_id" , "=" , reservationId).update(req.body)
         if(!updatedReservation){
             return res.status(404).json({message: " Can not find reservation with this id "})
         }
