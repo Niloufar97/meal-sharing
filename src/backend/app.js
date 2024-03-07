@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import mealsRouter from "./api/meals.js";
+import reservationRouter from "./api/reservations.js"
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -11,6 +12,7 @@ const __dirname = dirname(__filename);
 const buildPath = path.join(__dirname, "../../dist");
 const app = express();
 const router = express.Router();
+
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -24,7 +26,8 @@ app.use(express.json());
 
 app.use(cors());
 
-router.use("/meals", mealsRouter);
+app.use("/api/meals", mealsRouter);
+app.use("/api/reservations" , reservationRouter)
 
 // Respond with all meals in the future (relative to the when datetime)
 app.get("/future-meals", async (req, res) => {
