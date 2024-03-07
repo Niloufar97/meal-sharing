@@ -73,21 +73,26 @@ export async function getMealBeforeDate(beforeDate, response) {
 }
 
 export async function getLimitedMeals(limit, response) {
-  const limitedMeals = await knex("Meal").select("*").limit(limit);
+  const limitedMeals = await knex("Meal")
+    .select("*")
+    .limit(limit);
   response.data = limitedMeals;
   response.status = 200;
   response.message = "ok";
 }
 
-export async function getSortedMeals(sortKey, response){
+export async function getSortedMeals(sortKey, sortDir, response){
     const validSortKeys = ["when", "max_reservations", "price"];
+    const sortDirection = sortDir? sortDir : "asc"
     if(!validSortKeys.includes(sortKey)){
         response.data = null;
         response.status = 400;
         response.message = "Invalid sort key";
         return
     }
-    const sortedMeals = await knex('Meal').select('*').orderBy(sortKey);
+    const sortedMeals = await knex('Meal')
+        .select('*')
+        .orderBy(sortKey , sortDirection);
     response.data = sortedMeals;
     response.status = 200;
     response.message = "ok";

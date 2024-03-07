@@ -16,7 +16,7 @@ const MealSchema = joi.object({
 
 // Returns all meals
 router.get("/", async (req, res) => {
-  const {maxPrice , availableReservations, title, dateAfter, dateBefore, limit, sortKey} = req.query
+  const {maxPrice , availableReservations, title, dateAfter, dateBefore, limit, sortKey, sortDir} = req.query
   
   try {
     let response = {};
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 
     if(limit) await getLimitedMeals(limit, response);
 
-    if(sortKey) await getSortedMeals(sortKey, response)
+    if(sortKey) await getSortedMeals(sortKey, sortDir, response)
 
     res.status(response.status).json({data : response.data , message : response.message})
   } catch (error) {
