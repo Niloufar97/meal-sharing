@@ -50,6 +50,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id/reviews" , async(req,res)=>{
+  const mealId = +req.params.id;
+  const reviwesForMeal = await knex("Review")
+    .select('Review.title', 'Review.description', 'Meal.meal_id')
+    .join('Meal' , 'Meal.meal_id' , '=' , 'Review.meal_id')
+    .where('Meal.meal_id', '=' , mealId)
+
+  res.status(200).json({data:reviwesForMeal , message: "ok"})
+});
+
 // 	Adds a new meal to the database
 router.post("/", async (req, res) => {
   try {
