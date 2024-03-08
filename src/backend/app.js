@@ -1,7 +1,8 @@
 import express from "express";
 import path from "path";
 import mealsRouter from "./api/meals.js";
-import reservationRouter from "./api/reservations.js"
+import reservationRouter from "./api/reservations.js";
+import reviewsRouter from "./api/reviews.js";
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -27,7 +28,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/meals", mealsRouter);
-app.use("/api/reservations" , reservationRouter)
+app.use("/api/reservations" , reservationRouter);
+app.use("/api/reviews" , reviewsRouter);
 
 // Respond with all meals in the future (relative to the when datetime)
 app.get("/future-meals", async (req, res) => {
