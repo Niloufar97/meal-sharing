@@ -1,12 +1,17 @@
-require('dotenv').config();
-const path = require('path');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import 'dotenv/config';
+import path, { dirname } from 'path';
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const outputDirectory = 'dist';
 
-module.exports = {
+export default {
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -38,7 +43,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
-    static: '/',
+    static: './',
     historyApiFallback: true,
     port: parseInt(process.env.CLIENT_PORT, 10),
     open: process.env.OPEN_BROWSER === 'true' ? true : false,
