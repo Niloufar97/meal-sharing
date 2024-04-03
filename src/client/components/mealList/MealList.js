@@ -1,9 +1,12 @@
 import useSWR from "swr";
 import React from "react";
+import MealItem from "./MealItem.js";
+import styles from './meal.module.css'
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
 };
+
 
 function MealList() {
   const { data, error } = useSWR("http://localhost:5000/all-meals", fetcher);
@@ -11,9 +14,9 @@ function MealList() {
   if (error) return <div>Error in fetching data</div>;
   
   return (
-    <div>
+    <div className={styles["meal-container"]}>
       {data.map((meal) => (
-        <p key={meal.id}>{meal.title}</p>
+        <MealItem key={meal.meal_id} meal={meal} />
       ))}
     </div>
   );
