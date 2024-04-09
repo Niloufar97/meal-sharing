@@ -9,8 +9,8 @@ const fetcher = (url) => {
 
 
 function MealList() {
-  const { data, error } = useSWR("http://localhost:5000/all-meals", fetcher);
-  if (!data) return <div>Loading...</div>;
+  const { data, error, isLoading } = useSWR("http://localhost:5000/all-meals", fetcher);
+  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error in fetching data</div>;
   
   return (
