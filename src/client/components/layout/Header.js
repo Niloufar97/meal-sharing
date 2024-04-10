@@ -1,9 +1,9 @@
 import React from "react";
 const Header = () => {
     return (
-        <div className="">
+        <header className="">
             <h1>Meal Sharing</h1>
-        </div>
+        </header>
     );
   };
   
