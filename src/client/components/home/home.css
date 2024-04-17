@@ -5,7 +5,7 @@
     align-items: center;
 }
 .hero h2{
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .hero img{
@@ -13,18 +13,21 @@
    height: 70vh;
 }
 .popular{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     text-align: center;
     margin: 4rem 0 5rem;
 }
 .mySwiper{
     width: 60%;
-    height: 65vh;
-    margin-top: 2rem;
+    height: 70vh;
+    margin-top: 1rem;
 }
 .swiperSlide{
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #d9b0b5; 
+    background-color: #e9cdd1; 
 }

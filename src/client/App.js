@@ -13,8 +13,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/lol">
-            <p>lol</p>
+          <Route exact path="/meals">
+            <MealList />
           </Route>
           <Route exact path="/test-component">
             <TestComponent></TestComponent>

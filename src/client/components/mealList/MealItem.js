@@ -8,7 +8,6 @@ function MealItem({ meal }) {
         <img src={meal.img} alt={meal.title} />
       </div>
       <h2>{meal.title}</h2>
-      <p className={styles["desc"]}>{meal.description}</p>
       <h6 className={styles["price"]}>Price: {meal.price} kr.</h6>
     </div>
   );
