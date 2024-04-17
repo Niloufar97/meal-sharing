@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgContainer{
+    width: 50%;
+    height: 100%;
+}
+.imgContainer img{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+}
+.textContainer{
+
+}
+.layout{
+    margin: auto;
+    width: 75%;
+    background: #f2e9ea;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid gray;
+}
