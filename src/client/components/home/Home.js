@@ -1,12 +1,13 @@
 import React from "react";
 import "./home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useSWR from "swr";
 import SwiperContent from "../swiperContent/SwiperContent.js";
+import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
@@ -29,12 +30,16 @@ function Home() {
       <section className="popular">
         <h1>THE MOST POPULAR THIS WEEK</h1>
         <Swiper 
-          cssMode={true}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
           className="mySwiper"
           loop={true}
         >
@@ -44,9 +49,13 @@ function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <p>
+          Click <Link to="/meals">here</Link> to see more meals
+        </p>
       </section>
     </>
   );
 }
 
 export default Home;
+
