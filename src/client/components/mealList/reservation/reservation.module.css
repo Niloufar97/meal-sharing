@@ -22,3 +22,41 @@
     font-weight: 800;
     
 }
+.formContainerOverlay{
+    position: fixed; 
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.formContainer{
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.formContainer form{
+    margin: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.formContainer form input{
+    width: 50%;
+    height: 2rem;
+    padding: 1rem;
+}
+.formContainer form button{
+    width: 50%;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+}

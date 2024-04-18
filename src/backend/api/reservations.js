@@ -6,7 +6,7 @@ const router = express.Router();
 const reservationSchema = joi.object({
     number_of_guests: joi.number().required(),
     meal_id: joi.number().required() ,
-    created_date: joi.date().iso().required(),
+    created_date: joi.date().iso(),
     contact_phonenumber : joi.string().min(8),
     contact_name: joi.string().required(),
     contact_email : joi.string().email(),
