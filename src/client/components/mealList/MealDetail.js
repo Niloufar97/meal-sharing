@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./meal.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
 import useSWR from "swr";
+import Reservation from "./reservation/Reservation.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
@@ -21,7 +22,7 @@ function MealDetail() {
   );
   if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading...</p>;
-
+console.log(data)
   return (
     <>
       <div className={styles.mealDetailContainer}>
@@ -30,8 +31,8 @@ function MealDetail() {
           <h1 className={styles.mealTitle}>{data.data[0].title}</h1>
           <p>{data.data[0].description}</p>
           <p>When: {formatDateTime(data.data[0]._when)}</p>
-          <div>Max-Reservation: {data.data[0].max_reservations}</div>
           <p>Price: {data.data[0].price}</p>
+          <Reservation id={data.data[0].meal_id}/>
         </div>
       </div>
     </>

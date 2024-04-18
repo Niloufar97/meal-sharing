@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import TestComponent from "./components/TestComponent/TestComponent.js";
 import MealList from "./components/mealList/MealList.js";
 import Layout from "./components/layout/Layout.js";
 import Home from "./components/home/Home.js";
