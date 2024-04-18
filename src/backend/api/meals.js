@@ -96,6 +96,27 @@ router.get("/bestsellers", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+router.get("/:id/available" , async(req, res) => {
+  try{
+    const id = +req.params.id
+    const availableMeals = await knex('Meal')
+    .select(
+        "Meal.max_reservations",
+        knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
+        knex.raw("Meal.max_reservations - COALESCE(SUM(number_of_guests), 0) AS available_reservations")
+    )
+    .leftJoin("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
+    .where("Meal.meal_id", id)
+    .groupBy("Meal.meal_id")
+    .havingRaw(
+        "COALESCE(SUM(number_of_guests), 0) < max_reservations OR COUNT(Reservation.meal_id) = 0"
+    );
+    res.status(200).json({data: availableMeals , message:"ok"})
+  }catch (error) {
+    console.error('Error fetching bestseller meals:', error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+})
 
 // 	Adds a new meal to the database
 router.post("/", async (req, res) => {
