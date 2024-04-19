@@ -31,9 +31,9 @@ function FoodReview({ id }) {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className={styles.reviewComp}>
+    <div className={data.data.length === 0 ? styles.reviewComp1 : styles.reviewComp}>
       {data.data.length === 0 ? (
-        <h4>No review for this food</h4>
+        <h4 >No review for this food</h4>
       ) : (
         <div className={styles.reviewDiv}>
           {data.data.map((review) => (
@@ -48,7 +48,7 @@ function FoodReview({ id }) {
         </div>
       )}
       <section className={styles.reviewFormContainer}>
-        <ReviewForm />
+        <ReviewForm id={id}/>
       </section>
     </div>
   );

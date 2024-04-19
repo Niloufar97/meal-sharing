@@ -47,9 +47,12 @@ router.post("/", async (req,res) => {
         if(meal.length === 0){
             return res.json({message : "Can't add a review for non-existing meal"})
         }
-
+        const mealReview = {
+          ...req.body,
+          created_date: new Date()
+        }
         await knex("Review")
-          .insert(req.body)
+          .insert(mealReview)
     
        return res.status(200).json({ message: "Review added successfully" });
       } catch (err) {
