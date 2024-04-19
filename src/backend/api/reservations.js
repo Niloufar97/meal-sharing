@@ -30,8 +30,11 @@ router.post("/", async(req, res) => {
         const errorMessages = error.details.map(detail => detail.message);
         return res.status(400).json({error : errorMessages})
     }
-
-    await knex("Reservation").insert(req.body);
+    const reservationData = {
+        ...req.body,
+        created_date: new Date()
+    };
+    await knex("Reservation").insert(reservationData);
 
     res.status(201).json({message : "Reservation added successfully"})
   }catch (error){

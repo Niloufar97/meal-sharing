@@ -102,6 +102,7 @@ router.get("/:id/available", async (req, res) => {
     const availableMeals = await knex('Meal')
       .select(
         "Meal.max_reservations",
+        "Meal.title",
         knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
         knex.raw("Meal.max_reservations - COALESCE(SUM(number_of_guests), 0) AS available_reservations")
       )

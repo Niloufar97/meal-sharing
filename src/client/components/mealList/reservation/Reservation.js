@@ -34,7 +34,7 @@ function Reservation({id}) {
                 <p className={styles.soldOut}>Sold out</p>
             )}
         </div>
-        {popup ? (<ReservationForm id={id} setPopup={setPopup}/>) : ""}
+        {popup ? (<ReservationForm id={id} mealTitle={data.data[0].title} setPopup={setPopup}/>) : ""}
     </>
   )
 }

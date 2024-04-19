@@ -31,6 +31,7 @@ console.log(data)
           <h1 className={styles.mealTitle}>{data.data[0].title}</h1>
           <p>{data.data[0].description}</p>
           <p>When: {formatDateTime(data.data[0]._when)}</p>
+          <p>Where: {data.data[0].location}</p>
           <p>Price: {data.data[0].price}</p>
           <Reservation id={data.data[0].meal_id}/>
         </div>

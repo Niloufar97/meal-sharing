@@ -3,7 +3,7 @@ import styles from "./reservation.module.css";
 import useSWR, { mutate } from "swr";
 import { useState  } from "react";
 
-function ReservationForm({ id, setPopup}) {
+function ReservationForm({ id, setPopup, mealTitle}) {
   const [formData, setFormData] = useState({
     contact_name: "",
     contact_email: "",
@@ -50,7 +50,10 @@ function ReservationForm({ id, setPopup}) {
   return (
     <div className={styles.formContainerOverlay}>
       <div className={styles.formContainer}>
-        <button type="button" onClick={() => {setPopup(false)}}>close</button>
+        <div className={styles.formHeader}>
+          <h2>{mealTitle}</h2>
+          <button type="button" onClick={() => {setPopup(false)}}>close</button>
+        </div>
         <form onSubmit={submitHandler}>
           <input
             type="text"
