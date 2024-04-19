@@ -3,6 +3,7 @@ import styles from "./meal.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
 import useSWR from "swr";
 import Reservation from "./reservation/Reservation.js";
+import FoodReview from "./reviews/FoodReview.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
@@ -24,8 +25,8 @@ function MealDetail() {
   if (isLoading) return <p>Loading...</p>;
 console.log(data)
   return (
-    <>
-      <div className={styles.mealDetailContainer}>
+    <div className={styles.MealDetailComp}>
+      <section className={styles.mealDetailContainer}>
         <img src={data.data[0].img}></img>
         <div className={styles.detailText}>
           <h1 className={styles.mealTitle}>{data.data[0].title}</h1>
@@ -35,8 +36,12 @@ console.log(data)
           <p>Price: {data.data[0].price}</p>
           <Reservation id={data.data[0].meal_id}/>
         </div>
-      </div>
-    </>
+      </section>
+      <section className={styles.reviewContainer}>
+        <h2>Reviews</h2>
+        <FoodReview id={id}/>
+      </section>
+    </div>
   );
 }
 
