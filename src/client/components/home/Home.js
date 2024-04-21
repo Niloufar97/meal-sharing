@@ -23,12 +23,7 @@ function Home() {
   console.log(data);
   return (
     <>
-      <section className="hero">
-        <h2>EAT, DRINK & BE HAPPY</h2>
-        <img src="src\client\assets\images\hero.jpg" alt="My Image" />
-      </section>
       <section className="popular">
-        <h1>THE MOST POPULAR THIS WEEK</h1>
         <Swiper 
           spaceBetween={30}
           centeredSlides={true}
@@ -49,9 +44,9 @@ function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <p>
-          Click <Link to="/meals">here</Link> to see more meals
-        </p>
+        <button>
+          <Link className="myLink" to="/meals">More</Link> 
+        </button>
       </section>
     </>
   );

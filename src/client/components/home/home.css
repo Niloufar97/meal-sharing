@@ -1,26 +1,14 @@
-.hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.hero h2{
-    margin-top: 3rem;
-}
 
-.hero img{
-   width: 65%;
-   height: 70vh;
-}
 .popular{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
-    margin: 4rem 0 5rem;
+    justify-content: center;
+    margin: 1rem 0 ;
 }
 .mySwiper{
-    width: 60%;
+    width: 80%;
     height: 70vh;
     margin-top: 1rem;
 }
@@ -30,4 +18,25 @@
     align-items: center;
     justify-content: center;
     background-color: #e9cdd1; 
+}
+.popular button{
+    width: 10rem;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+.popular button:hover{
+    border: 2px solid #d9b0b5;
+    
+}
+.myLink{
+    text-decoration: none;
+    font-weight: bold;
+    color: gray;
+
+}
+.myLink:hover{
+    font-weight: 800;
+    color: black;
 }
