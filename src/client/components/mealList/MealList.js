@@ -1,23 +1,44 @@
 import useSWR from "swr";
-import React from "react";
+import React, { useState } from "react";
 import MealItem from "./MealItem.js";
-import styles from './meal.module.css'
+import styles from "./meal.module.css";
 
-const fetcher = (url) => {
-  return fetch(url).then((res) => res.json());
+const fetcher = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json()
+  return data.data
 };
 
-
 function MealList() {
-  const { data, error, isLoading } = useSWR("http://localhost:5000/all-meals", fetcher);
-  if (isLoading) return <div>Loading...</div>;
+  const [searchQuery, setSearchQuery] = useState("");
+  const shouldFetch = searchQuery?  `http://localhost:5000/api/meals?title=${searchQuery}` :'http://localhost:5000/api/meals'
+  const { data, error, isLoading } = useSWR(
+    shouldFetch,
+    fetcher
+  );
+
+
   if (error) return <div>Error in fetching data</div>;
-  
+
   return (
-    <div className={styles["meal-container"]}>
-      {data.map((meal) => (
-        <MealItem key={meal.meal_id} meal={meal} />
-      ))}
+    <div className={styles.MealListComp}>
+      <div className={styles.searchAndFilter}>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          ></input>
+        
+        </div>
+      </div>
+      {isLoading && <p>Loading...</p>}
+      <div className={styles["meal-container"]}>
+        {data?.map((meal) => (
+          <MealItem key={meal.meal_id} meal={meal} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -88,7 +88,7 @@ router.get("/bestsellers", async (req, res) => {
       .join("Review", "Meal.meal_id", "=", "Review.meal_id")
       .groupBy("Meal.meal_id")
       .orderBy("Average_Stars", "desc")
-      .limit(3);
+      .limit(4);
 
     res.status(200).json({ data: bestsellers, message: "Top meals based on average stars" });
   } catch (error) {

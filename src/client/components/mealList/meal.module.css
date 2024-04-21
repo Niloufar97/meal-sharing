@@ -1,4 +1,31 @@
+.MealListComp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    caret-color: aquamarine;
+}
+.searchContainer{
+    margin-top: 1rem;
+}
+.searchContainer input{
+    width: 15rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid #d9b0b5;
+}
+.searchContainer button{
+    background-color: #d9b0b5;
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid #d9b0b5;
+    cursor: pointer;
+}
 .meal-container{
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(4 , 1fr);
     margin: 3rem;
