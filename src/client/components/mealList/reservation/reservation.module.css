@@ -1,0 +1,86 @@
+.availableDiv{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.soldOut{
+    color: rgb(243, 98, 90);
+    font-weight: 700;
+}
+.availableDiv button{
+    cursor: pointer;
+    height: 2.5rem;
+    width: 10rem;
+    border-radius: 1rem;
+    background-color: #d9b0b5;
+    border: none;
+    transition: transform ease-in 0.3s;
+}
+
+.availableDiv button:hover{
+    transform: scale(1.1);
+    font-weight: 800;
+    
+}
+.formContainerOverlay{
+    position: fixed; 
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.formContainer{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.formHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+.formHeader h2{
+    font-size: 2rem;
+}
+.formHeader button{
+    cursor: pointer;
+    width: 8rem;
+    background-color: #d9b0b5 ;
+    border-radius: 1rem;
+    border: none;
+}
+.formContainer form{
+    width: 50%;
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid gray;
+}
+.formContainer form input{
+    width: 50%;
+    height: 2rem;
+    padding: 1rem;
+}
+.formContainer form button{
+    width: 50%;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #d9b0b5;
+}

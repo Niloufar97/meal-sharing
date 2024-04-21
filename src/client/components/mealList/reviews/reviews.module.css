@@ -1,0 +1,54 @@
+.reviewComp{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    margin: 0.5rem;
+    width: 100%;
+
+}
+.reviewComp1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    gap: 1rem;
+}
+.reviewContainer{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+   
+}
+.reviewDiv{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  
+}
+.singleReview, .reviewFormCom , .reviewComp h4{
+    padding: 1rem;
+    border: 1px groove gray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.reviewHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.reviewFormCom{
+  
+}
+.reviewFormCom form{
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.reviewFormCom form input ,.reviewFormCom form textarea{
+    padding: 0.3rem;
+}

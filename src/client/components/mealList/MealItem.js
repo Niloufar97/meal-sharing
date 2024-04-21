@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./meal.module.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
 function MealItem({ meal }) {
   return (
@@ -7,8 +8,7 @@ function MealItem({ meal }) {
       <div className={styles["image-container"]}>
         <img src={meal.img} alt={meal.title} />
       </div>
-      <h2>{meal.title}</h2>
-      <p className={styles["desc"]}>{meal.description}</p>
+      <Link to={`/meals/${meal.meal_id}`}className={styles.link}><h2>{meal.title}</h2></Link>
       <h6 className={styles["price"]}>Price: {meal.price} kr.</h6>
     </div>
   );
