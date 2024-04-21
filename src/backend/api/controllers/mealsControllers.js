@@ -16,6 +16,8 @@ export async function getAvailableReservations(
       .select(
         "Meal.meal_id",
         "Meal.title",
+        "Meal.img",
+        "Meal.price",
         knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
         "max_reservations"
       )

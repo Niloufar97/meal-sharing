@@ -9,9 +9,23 @@ const fetcher = async (url) => {
   return data.data
 };
 
+
+
 function MealList() {
   const [searchQuery, setSearchQuery] = useState("");
-  const shouldFetch = searchQuery?  `http://localhost:5000/api/meals?title=${searchQuery}` :'http://localhost:5000/api/meals'
+  const [availableReservation , setAvailableReservation] = useState(false)
+  const urlGenrator = () => {
+    if(searchQuery){
+     return `http://localhost:5000/api/meals?title=${searchQuery}`
+    }
+    else if(availableReservation){
+      return `http://localhost:5000/api/meals?availableReservations=true`
+    }
+    else{
+      return 'http://localhost:5000/api/meals'
+    }
+  }
+  const shouldFetch = urlGenrator
   const { data, error, isLoading } = useSWR(
     shouldFetch,
     fetcher
@@ -30,7 +44,9 @@ function MealList() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
-        
+        </div>
+        <div>
+          <button type="button" onClick={()=> {setAvailableReservation(true)}}>Available</button>
         </div>
       </div>
       {isLoading && <p>Loading...</p>}

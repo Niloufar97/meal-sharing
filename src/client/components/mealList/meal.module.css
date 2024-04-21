@@ -6,12 +6,10 @@
     width: 100%;
     caret-color: aquamarine;
 }
-.searchContainer{
-    margin-top: 1rem;
-}
+
 .searchContainer input{
     width: 15rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     margin: 0.5rem;
     border-radius: 1rem;
     border: 1px solid #d9b0b5;
@@ -101,4 +99,19 @@
 }
 .reviewContainer h2{
     text-align: center;
+}
+.searchAndFilter{
+    margin: 1.5rem 0 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.searchAndFilter button{
+    width: 10rem;
+    padding: 0.5rem;
+    border: 1px solid #d9b0b5;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin: 0.5rem;
 }
