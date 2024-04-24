@@ -13,19 +13,27 @@ const fetcher = async (url) => {
 
 function MealList() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [availableReservation , setAvailableReservation] = useState(false)
+  // const [availableReservation , setAvailableReservation] = useState(false)
+  // const [allMeals, setAllMeals] = useState(false)
+  const [MealsTORender, setMealsToRender] = useState({availableReservation: false , allMeals: false, max_price: false})
   const urlGenrator = () => {
     if(searchQuery){
      return `http://localhost:5000/api/meals?title=${searchQuery}`
     }
-    else if(availableReservation){
+    else if(MealsTORender.availableReservation){
       return `http://localhost:5000/api/meals?availableReservations=true`
+    }
+    else if(MealsTORender.allMeals){
+      return(`http://localhost:5000/api/meals`)
+    }
+    else if(MealsTORender.max_price){
+      return(`api/meals?sortKey=price&sortDir=desc`)
     }
     else{
       return 'http://localhost:5000/api/meals'
     }
   }
-  const shouldFetch = urlGenrator
+  const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(
     shouldFetch,
     fetcher
@@ -45,8 +53,10 @@ function MealList() {
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
         </div>
-        <div>
-          <button type="button" onClick={()=> {setAvailableReservation(true)}}>Available</button>
+        <div className={styles.sortDiv}>
+          <button type="button" onClick={()=> {setMealsToRender({availableReservation: false , allMeals: true, max_price: false})}}>All</button>
+          <button type="button" onClick={()=> {setMealsToRender({availableReservation: true , allMeals: false, max_price: false})}}>Available</button>
+          <button type="button" onClick={()=> {setMealsToRender({availableReservation: false , allMeals: false, max_price: true})}}>Expensive</button>
         </div>
       </div>
       {isLoading && <p>Loading...</p>}

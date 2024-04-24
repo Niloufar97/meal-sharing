@@ -1,6 +1,6 @@
 import React from "react";
 const Footer = () => {
-    return <footer>This is the footer</footer>;
+    return <footer>Developed by Niloufar</footer>;
   };
   
 export default Footer;
