@@ -12,12 +12,10 @@ const fetcher = async (url) => {
 
 function MealList() {
   const [searchQuery, setSearchQuery] = useState("");
-  // const [availableReservation , setAvailableReservation] = useState(false)
-  // const [allMeals, setAllMeals] = useState(false)
+  const [maxPrice, setMaxPrice] = useState("")
   const [MealsTORender, setMealsToRender] = useState({
     availableReservation: false,
     allMeals: false,
-    max_price: false,
   });
   const [openFilters, setOpenFilters] = useState(false);
   const urlGenrator = () => {
@@ -27,8 +25,8 @@ function MealList() {
       return `http://localhost:5000/api/meals?availableReservations=true`;
     } else if (MealsTORender.allMeals) {
       return `http://localhost:5000/api/meals`;
-    } else if (MealsTORender.max_price) {
-      return `api/meals?sortKey=price&sortDir=desc`;
+    } else if (maxPrice) {
+      return `api/meals?maxPrice=${maxPrice}`;
     } else {
       return "http://localhost:5000/api/meals";
     }
@@ -40,14 +38,6 @@ function MealList() {
 
   return (
     <div className={styles.MealListComp}>
-      {openFilters ? (
-        <Filters
-          setOpenFilters={setOpenFilters}
-          setMealsToRender={setMealsToRender}
-        />
-      ) : (
-        ""
-      )}
       <div className={styles.searchAndFilter}>
         <div className={styles.searchContainer}>
           <input
@@ -57,10 +47,19 @@ function MealList() {
             onChange={(e) => setSearchQuery(e.target.value)}
           ></input>
         </div>
-        <button type="button" onClick={() => setOpenFilters(true)}>
+        <button className={styles.filterBtn} type="button" onClick={() => setOpenFilters(true)}>
           Filters
         </button>
       </div>
+      {openFilters ? (
+          <Filters
+            setOpenFilters={setOpenFilters}
+            setMealsToRender={setMealsToRender}
+            setMaxPrice={setMaxPrice}
+          />
+        ) : (
+          ""
+        )}
       {isLoading && <p>Loading...</p>}
       <div className={styles["meal-container"]}>
         {data?.map((meal) => (

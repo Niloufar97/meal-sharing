@@ -101,6 +101,7 @@
     text-align: center;
 }
 .searchAndFilter{
+    position: relative;
     margin: 1.5rem 0 0;
     width: 90%;
     display: flex;
@@ -114,10 +115,8 @@
     border-radius: 1rem;
     cursor: pointer;
     margin: 0.5rem;
-}
-.sortDiv button{
     background-color: white;
 }
-.sortDiv button:hover{
-    font-weight: bold;
+.searchAndFilter button:hover{
+    font-weight: 600;
 }

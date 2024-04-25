@@ -13,22 +13,22 @@ export async function getAvailableReservations(
 ) {
   if (availableReservations === "true") {
     const availableMeals = await knex("Meal")
-      .select(
-        "Meal.meal_id",
-        "Meal.title",
-        "Meal.img",
-        "Meal.price",
-        knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
-        "max_reservations"
-      )
-      .join("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
-      .groupBy("Meal.meal_id")
-      .havingRaw(
-        "COALESCE(SUM(number_of_guests), 0) < max_reservations OR COUNT(Reservation.meal_id) = 0"
-      );
-    response.data = availableMeals;
-    response.status = 200;
-    response.message = "ok";
+    .select(
+      "Meal.meal_id",
+      "Meal.title",
+      "Meal.img",
+      "Meal.price",
+      knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
+      "max_reservations"
+    )
+    .leftJoin("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
+    .groupBy("Meal.meal_id")
+    .havingRaw(
+      "COALESCE(SUM(number_of_guests), 0) < max_reservations OR COUNT(Reservation.meal_id) = 0"
+    );
+  response.data = availableMeals;
+  response.status = 200;
+  response.message = "ok";
   }
   if (availableReservations === "false") {
     const unavilableMeals = await knex("Meal")

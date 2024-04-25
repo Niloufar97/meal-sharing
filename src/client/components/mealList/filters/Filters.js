@@ -1,51 +1,50 @@
 import React from "react";
 import styles from "./filters.module.css";
 
-function Filters({ setMealsToRender ,setOpenFilters}) {
+function Filters({ setMealsToRender, setOpenFilters,setMaxPrice }) {
   return (
-    <div className={styles.overlay}>
-      <div className={styles.sidebar}>
-            <button type="button" className={styles.closeBtn} onClick={()=>{setOpenFilters(false)}}>
-                X
-            </button>
-        <div className={styles.sidebarContainer}>
-          <button
-            type="button"
-            onClick={() => {
-              setMealsToRender({
-                availableReservation: false,
-                allMeals: true,
-                max_price: false,
-              });
-            }}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setMealsToRender({
-                availableReservation: true,
-                allMeals: false,
-                max_price: false,
-              });
-            }}
-          >
-            Available
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setMealsToRender({
-                availableReservation: false,
-                allMeals: false,
-                max_price: true,
-              });
-            }}
-          >
-            Expensive
-          </button>
-        </div>
+    <div className={styles.sidebar}>
+      <div className={styles.sidebarContainer}>
+        <button
+          type="button"
+          onClick={() => {
+            setMealsToRender({
+              availableReservation: false,
+              allMeals: true,
+            });
+            setOpenFilters(false)
+          }}
+        >
+          All
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setMealsToRender({
+              availableReservation: true,
+              allMeals: false,
+            });
+            setOpenFilters(false)
+          }}
+        >
+          Available
+        </button>
+        <input
+          type="number"
+          placeholder="Max Price..."
+          onChange={(e) => {
+           setMaxPrice(e.target.value)
+          }}
+        />
+        <button
+          type="button"
+          className={styles.closeBtn}
+          onClick={() => {
+            setOpenFilters(false);
+          }}
+        >
+          Close
+        </button>
       </div>
     </div>
   );
