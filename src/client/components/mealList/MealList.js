@@ -11,29 +11,41 @@ const fetcher = async (url) => {
 };
 
 function MealList() {
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [maxPrice, setMaxPrice] = useState("")
+  const [maxPrice, setMaxPrice] = useState(null)
+  const [sortKey, setSortKey] = useState(null);
+  const [sortDir, setSortDir] = useState("asc"); 
   const [MealsTORender, setMealsToRender] = useState({
     availableReservation: false,
     allMeals: false,
   });
   const [openFilters, setOpenFilters] = useState(false);
+
   const urlGenrator = () => {
+    let url = "http://localhost:5000/api/meals"
+    const params = new URLSearchParams()
+  
     if (searchQuery) {
-      return `http://localhost:5000/api/meals?title=${searchQuery}`;
-    } else if (MealsTORender.availableReservation) {
-      return `http://localhost:5000/api/meals?availableReservations=true`;
-    } else if (MealsTORender.allMeals) {
-      return `http://localhost:5000/api/meals`;
-    } else if (maxPrice) {
-      return `api/meals?maxPrice=${maxPrice}`;
-    } else {
-      return "http://localhost:5000/api/meals";
+      params.append("title", searchQuery);
     }
-  };
+    if (MealsTORender.availableReservation) {
+      params.append("availableReservations", true);
+    }
+    if (maxPrice) {
+      params.append("maxPrice", maxPrice);
+    }
+    if (sortKey) {
+      params.append("sortKey", sortKey);
+      params.append("sortDir", sortDir);
+    }
+  
+    return `${url}?${params.toString()}`;
+  }
+  
   const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(shouldFetch, fetcher);
-
+  console.log(maxPrice)
   if (error) return <div>Error in fetching data</div>;
 
   return (
@@ -56,6 +68,8 @@ function MealList() {
             setOpenFilters={setOpenFilters}
             setMealsToRender={setMealsToRender}
             setMaxPrice={setMaxPrice}
+            setSortKey={setSortKey}
+            setSortDir={setSortDir}
           />
         ) : (
           ""
