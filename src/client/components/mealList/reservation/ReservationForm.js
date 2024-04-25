@@ -28,7 +28,8 @@ function ReservationForm({ id, setPopup, mealTitle}) {
       });
       if (response.ok) {
         mutate("http://localhost:5000/api/reservations");
-        alert("reserved successfully");
+        setPopup(false)
+        alert("Reserved successfully");
 
         console.log("Reservation added successfully");
        
