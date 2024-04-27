@@ -10,7 +10,7 @@
 }
 
 header{
-  background-color: #d9b0b5;
+  background-color: #e2a47e;
   display: flex;
   justify-content: space-between;
   padding: 5rem;
@@ -36,7 +36,7 @@ nav a {
   text-decoration: underline;
 }
 footer {
-    background-color: #d9b0b5;
+    background-color: #e2a47e;
     color: white;
     text-align: center;
     padding: 20px 0;

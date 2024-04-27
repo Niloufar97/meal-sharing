@@ -1,21 +1,20 @@
 import 'dotenv/config';
-import path, { dirname } from 'path';
+import path from 'path';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 
 const outputDirectory = 'dist';
+
+// Get the directory name using import.meta.url
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 export default {
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
-    path: path.join(__dirname, outputDirectory),
+    path: path.resolve(__dirname, outputDirectory),
     filename: 'bundle.js',
+    publicPath: '/', // Ensure correct path resolution for assets
   },
   module: {
     rules: [
@@ -31,30 +30,30 @@ export default {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        use: {
-          loader: 'url-loader',
-          options: { limit: 100000 }
-        },
+        test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // Convert images < 8kb to base64 strings
+              name: 'images/[name].[ext]', // Define image output path
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
     static: './',
     historyApiFallback: true,
-    port: parseInt(process.env.CLIENT_PORT, 10),
-    open: process.env.OPEN_BROWSER === 'true' ? true : false,
+    port: parseInt(process.env.CLIENT_PORT, 10) || 3000, // Default port to 3000 if not specified
+    open: process.env.OPEN_BROWSER === 'true',
     proxy: {
       '/api': `http://localhost:${process.env.API_PORT}`,
     },
-  },
-  node: {
-    global: false,
-    __filename: false,
-    __dirname: false,
   },
   plugins: [
     new HtmlWebpackPlugin({

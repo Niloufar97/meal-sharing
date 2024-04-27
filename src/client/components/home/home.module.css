@@ -1,0 +1,50 @@
+.videoBackground {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+  
+.videoBackground video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+}
+.content {
+    height: 90%;
+    position: relative;
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.content h1{
+    font-size: 3rem;
+}
+.content button{
+    width: 10rem;
+    padding: 0.5rem ;
+    border-radius: 0.5rem;
+    border: none;
+}
+.myLink{
+    text-decoration: none;
+    color: black;
+}
+.myLink:hover{
+    font-weight: 600;
+}

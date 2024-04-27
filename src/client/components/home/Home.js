@@ -1,56 +1,29 @@
 import React from "react";
-import "./home.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import useSWR from "swr";
-import SwiperContent from "../swiperContent/SwiperContent.js";
+import styles from "./home.module.css";
+
 import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
-const fetcher = (url) => {
-  return fetch(url).then((res) => res.json());
-};
-
 function Home() {
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:5000/api/meals/bestsellers",
-    fetcher
-  );
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  console.log(data);
   return (
     <>
-      <section className="popular">
-        <Swiper 
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination]}
-          className="mySwiper"
-          loop={true}
-        >
-          {data.data.map((item) => (
-            <SwiperSlide key={item.id} className="swiperSlide">
-              <SwiperContent data={item}/>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <button>
-          <Link className="myLink" to="/meals">More</Link> 
-        </button>
-      </section>
+      <div className={styles.videoBackground}>
+        <video autoPlay muted>
+          <source src="src\client\assets\videos\home.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className={styles.overlay}></div>
+        <div className={styles.content}>
+          <h1>Welcome to Meal-Sharing </h1>
+          <p>Here you can eat, drink & enjoy sharing food with others</p>
+          <button>
+            <Link className={styles.myLink} to="/meals">
+              Meals
+            </Link>
+          </button>
+        </div>
+      </div>
     </>
   );
 }
 
 export default Home;
-
