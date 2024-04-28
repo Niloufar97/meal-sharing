@@ -1,11 +1,41 @@
-import React from 'react'
+import React from "react";
+import styles from "./about.module.css";
+import MySwiper from "../../components/swiper/MySwiper.js";
 
 function About() {
   return (
-    <div>
-      <p>Have you ever craved a delicious home-cooked meal but lacked the time or inspiration to cook yourself? Or perhaps you're a culinary whiz with a signature dish you'd love to share? Welcome to MealSharing, the online marketplace that connects passionate home cooks with eager eaters in your community. Here, you can browse a vibrant selection of homemade meals, discover hidden culinary gems, and savor the taste of home with every bite. Want to be a part of the action? </p>
+    <div className={styles.container}>
+      <div className={styles.browseMeals}>
+        <h3>Dive into a World of Homemade Delights</h3>
+        <p>
+          Craving a taste of home but tired of the takeout routine? We connect
+          you with passionate home cooks in your community, offering a delicious
+          escape from the ordinary. Browse our vibrant marketplace of homemade
+          meals, brimming with hidden culinary gems and dishes bursting with
+          love. Reserve your perfect bite and savor the authentic flavors that
+          only come from a home kitchen.
+        </p>
+      </div>
+
+      <div className={styles.swiperContainer}>
+        <h2>OUR BEST FOODS</h2>
+        <MySwiper />
+      </div>
+
+      <div className={styles.hostAMeal}>
+        <h3>Ready to Share Your Culinary Passion?</h3>
+        <p>
+          Do you have a signature dish that wows your friends and family? Want
+          to spread the joy of your cooking and earn a little extra on the side?
+          We empower you to become a host on MealSharing! Simply add your
+          creation to our ever-growing meal list, set your price, and share your
+          culinary magic with the world. Click the link below to get started and
+          become a part of our vibrant community of home cooks and food lovers!
+        </p>
+        <button>share</button>
+      </div>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

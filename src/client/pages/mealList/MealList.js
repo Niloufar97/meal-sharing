@@ -45,7 +45,6 @@ function MealList() {
   
   const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(shouldFetch, fetcher);
-  console.log(maxPrice)
   if (error) return <div>Error in fetching data</div>;
 
   return (

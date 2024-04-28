@@ -1,3 +1,14 @@
+/* .backgroundImg{
+    position: relative;
+    height: 100vh;
+    background-image: url("../../assets/images/homeBG.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+    text-align: center;
+} */
 .videoBackground {
     position: relative;
     width: 100%;
@@ -19,7 +30,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust opacity as needed */
 }
 .content {
     height: 90%;

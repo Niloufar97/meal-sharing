@@ -1,0 +1,17 @@
+
+.popular{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    
+}.mySwiper{
+    width: 70%;
+    height: 60vh;
+}
+.swiperSlide{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
