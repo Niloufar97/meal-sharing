@@ -12,7 +12,7 @@
     height: 2.5rem;
     width: 10rem;
     border-radius: 1rem;
-    background-color: #d9b0b5;
+    background-color: #e2a47e;
     border: none;
     transition: transform ease-in 0.3s;
 }
@@ -55,7 +55,7 @@
 .formHeader button{
     cursor: pointer;
     width: 8rem;
-    background-color: #d9b0b5 ;
+    background-color: #e2a47e ;
     border-radius: 1rem;
     border: none;
 }
@@ -82,5 +82,5 @@
     padding: 1rem;
     border: none;
     border-radius: 1rem;
-    background-color: #d9b0b5;
+    background-color: #e2a47e;
 }

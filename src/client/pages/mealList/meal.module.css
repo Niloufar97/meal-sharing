@@ -12,14 +12,14 @@
     padding: 0.5rem 1rem;
     margin: 0.5rem;
     border-radius: 1rem;
-    border: 1px solid #d9b0b5;
+    border: 1px solid #e2a47e;
 }
 .searchContainer button{
-    background-color: #d9b0b5;
+    background-color: #e2a47e;
     width: 5rem;
     padding: 0.5rem;
     border-radius: 1rem;
-    border: 1px solid #d9b0b5;
+    border: 1px solid #e2a47e;
     cursor: pointer;
 }
 .meal-container{
@@ -40,7 +40,7 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
-    border: 3px solid #d9b0b5;
+    border: 3px solid #f3d9c9;
     border-radius: 1rem;
     padding: 1rem;
 }
@@ -68,7 +68,7 @@
     justify-content: center;
     align-items: center;
     gap: 6rem;
-    background-color: #f2e9ea;
+    background-color: #f3d9c9;
 }
 .mealDetailContainer img{
     width: 20rem;
@@ -93,7 +93,7 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    border: 2px solid #d9b0b5;
+    border: 2px solid #e2a47e;
     margin: 2rem auto 3rem;
     padding: 2rem 1rem;
 }
@@ -111,7 +111,7 @@
 .searchAndFilter button{
     width: 10rem;
     padding: 0.5rem;
-    border: 1px solid #d9b0b5;
+    border: 1px solid #e2a47e;
     border-radius: 1rem;
     cursor: pointer;
     margin: 0.5rem;
