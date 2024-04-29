@@ -11,11 +11,10 @@ const fetcher = async (url) => {
 };
 
 function MealList() {
-
   const [searchQuery, setSearchQuery] = useState("");
-  const [maxPrice, setMaxPrice] = useState(null)
+  const [maxPrice, setMaxPrice] = useState(null);
   const [sortKey, setSortKey] = useState(null);
-  const [sortDir, setSortDir] = useState("asc"); 
+  const [sortDir, setSortDir] = useState("asc");
   const [MealsTORender, setMealsToRender] = useState({
     availableReservation: false,
     allMeals: false,
@@ -23,9 +22,9 @@ function MealList() {
   const [openFilters, setOpenFilters] = useState(false);
 
   const urlGenrator = () => {
-    let url = "http://localhost:5000/api/meals"
-    const params = new URLSearchParams()
-  
+    let url = "http://localhost:5000/api/meals";
+    const params = new URLSearchParams();
+
     if (searchQuery) {
       params.append("title", searchQuery);
     }
@@ -39,40 +38,43 @@ function MealList() {
       params.append("sortKey", sortKey);
       params.append("sortDir", sortDir);
     }
-  
+
     return `${url}?${params.toString()}`;
-  }
-  
+  };
+
   const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(shouldFetch, fetcher);
   if (error) return <div>Error in fetching data</div>;
 
   return (
     <div className={styles.MealListComp}>
-      <div className={styles.searchAndFilter}>
-        <div className={styles.searchContainer}>
-          <input
-            type="text"
-            placeholder="search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          ></input>
-        </div>
-        <button className={styles.filterBtn} type="button" onClick={() => setOpenFilters(true)}>
-          Filters
-        </button>
-      </div>
       {openFilters ? (
-          <Filters
-            setOpenFilters={setOpenFilters}
-            setMealsToRender={setMealsToRender}
-            setMaxPrice={setMaxPrice}
-            setSortKey={setSortKey}
-            setSortDir={setSortDir}
-          />
-        ) : (
-          ""
-        )}
+        <Filters
+          setOpenFilters={setOpenFilters}
+          setMealsToRender={setMealsToRender}
+          setMaxPrice={setMaxPrice}
+          setSortKey={setSortKey}
+          setSortDir={setSortDir}
+        />
+      ) : (
+        <div className={styles.searchAndFilter}>
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              placeholder="search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            ></input>
+          </div>
+          <button
+            className={styles.filterBtn}
+            type="button"
+            onClick={() => setOpenFilters(true)}
+          >
+            Filters
+          </button>
+        </div>
+      )}
       {isLoading && <p>Loading...</p>}
       <div className={styles["meal-container"]}>
         {data?.map((meal) => (

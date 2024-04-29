@@ -6,22 +6,6 @@
     width: 100%;
     caret-color: aquamarine;
 }
-
-.searchContainer input{
-    width: 15rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-    border-radius: 1rem;
-    border: 1px solid #e2a47e;
-}
-.searchContainer button{
-    background-color: #e2a47e;
-    width: 5rem;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    border: 1px solid #e2a47e;
-    cursor: pointer;
-}
 .meal-container{
     width: 90%;
     display: grid;
@@ -102,17 +86,24 @@
 }
 .searchAndFilter{
     position: relative;
-    margin: 1.5rem 0 0;
+    margin: 2rem 0 0;
     width: 90%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
+.searchContainer input{
+    width: 20rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid #e2a47e;
+}
 .searchAndFilter button{
     width: 10rem;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border: 1px solid #e2a47e;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     cursor: pointer;
     margin: 0.5rem;
     background-color: white;
