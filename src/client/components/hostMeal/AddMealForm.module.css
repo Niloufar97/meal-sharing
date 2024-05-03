@@ -1,0 +1,37 @@
+
+.formContainer{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer form{
+    width: 50%;
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid gray;
+}
+.formContainer form input{
+    width: 50%;
+    height: 2rem;
+    padding: 1rem;
+}
+.formContainer form textarea{
+    padding: 1rem;
+}
+.formContainer form button{
+    width: 50%;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #e2a47e;
+}

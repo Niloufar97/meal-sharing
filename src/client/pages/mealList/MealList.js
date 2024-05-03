@@ -2,7 +2,7 @@ import useSWR from "swr";
 import React, { useState } from "react";
 import MealItem from "./MealItem.js";
 import styles from "./meal.module.css";
-import Filters from "./filters/Filters.js";
+import Filters from "../../components/filters/Filters.js";
 
 const fetcher = async (url) => {
   const response = await fetch(url);

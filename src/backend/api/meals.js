@@ -20,6 +20,7 @@ const MealSchema = joi.object({
   max_reservations: joi.number().integer().min(1).required(),
   price: joi.number().min(0).required(),
   created_date: joi.date().iso(),
+  img: joi.string().required()
 });
 
 // Returns all meals
@@ -125,8 +126,8 @@ router.post("/", async (req, res) => {
       const errorMessages = error.details.map((detail) => detail.message);
       return res.status(400).json({ errors: errorMessages });
     }
-
-    await knex("Meal").insert(req.body);
+    const MealData = {...req.body , created_date: new Date()}
+    await knex("Meal").insert(MealData);
 
     res.status(201).json({ message: "new meal added successfully" });
   } catch (err) {

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./about.module.css";
 import MySwiper from "../../components/swiper/MySwiper.js";
+import AddMealForm from "../../components/hostMeal/AddMealForm.js";
 
 function About() {
   return (
@@ -32,7 +33,8 @@ function About() {
           culinary magic with the world. Click the link below to get started and
           become a part of our vibrant community of home cooks and food lovers!
         </p>
-        <button>share</button>
+
+        <AddMealForm />
       </div>
     </div>
   );
