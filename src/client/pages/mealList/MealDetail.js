@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./meal.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
 import useSWR from "swr";
-import Reservation from "./reservation/Reservation.js";
-import FoodReview from "./reviews/FoodReview.js";
+import Reservation from "../../components/reservation/Reservation.js";
+import FoodReview from "../../components/reviews/FoodReview.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
