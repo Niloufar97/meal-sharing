@@ -1,7 +1,7 @@
+
 .availableDiv{
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
 }
 .soldOut{
     color: rgb(243, 98, 90);
@@ -83,4 +83,40 @@
     border: none;
     border-radius: 1rem;
     background-color: #e2a47e;
+}
+@media only screen and (max-width: 599px) {
+    .availableDiv{
+        flex-direction: column;
+    }
+    .availableDiv button{
+        margin-top: 1rem;
+    }
+    .soldOut{
+        margin-top: 1rem;
+    }
+    .formContainer{
+        width: 100%;
+    }
+    .formHeader h2{
+        font-size: 1rem;
+    }
+    .formHeader button{
+        width: 5rem;
+    }
+    .formContainer form{
+        width: 90%;
+    }
+    .formContainer form input{
+        width: 80%;
+    }
+}
+
+/* For tablets */
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+  /* Your tablet-specific CSS styles go here */
+}
+
+/* For desktops */
+@media only screen and (min-width: 992px) {
+  /* Your desktop-specific CSS styles go here */
 }

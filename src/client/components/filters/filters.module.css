@@ -55,3 +55,32 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+@media only screen and (max-width: 599px) {
+  .sidebar {
+    width: 80%;
+  }
+  .sidebarContainer{
+    flex-direction: column-reverse;
+  }
+  .sidebarContainer > * {
+    flex-grow: 1;
+    width: 100%; 
+  }
+  .sortContainer {
+    flex-grow: 1; 
+  }
+  .sortContainer button {
+    flex-grow: 1; 
+    width: auto; 
+  }
+
+}
+/* For tablets */
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+ /* Your tablet-specific CSS styles go here */
+}
+
+/* For desktops */
+@media only screen and (min-width: 992px) {
+ /* Your desktop-specific CSS styles go here */
+}

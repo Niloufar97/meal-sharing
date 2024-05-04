@@ -111,3 +111,35 @@
 .searchAndFilter button:hover{
     font-weight: 600;
 }
+@media only screen and (max-width: 599px) {
+   .meal-container{
+    grid-template-columns: repeat(1 , 1fr);
+   }
+   .searchContainer input{
+    width: 15rem;
+   }
+   .mealDetailContainer{
+    flex-direction: column;
+    gap: 1rem;
+   }
+   .mealDetailContainer img{
+    width: 15rem;
+    height: 15rem;
+   }
+   .detailText{
+    padding: 1.5rem;
+   }
+   .mealTitle{
+    font-size: 1.5rem;
+   }
+}
+
+/* For tablets */
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+  /* Your tablet-specific CSS styles go here */
+}
+
+/* For desktops */
+@media only screen and (min-width: 992px) {
+  /* Your desktop-specific CSS styles go here */
+}
