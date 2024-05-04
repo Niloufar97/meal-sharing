@@ -62,8 +62,6 @@ const AddMealForm = () => {
           <textarea
             placeholder="Food Description"
             name="description"
-            rows="4"
-            cols="35"
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }

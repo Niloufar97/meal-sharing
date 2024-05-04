@@ -5,7 +5,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
 function Home() {
   return (
-    <>
+    <div className={styles.Containter}>
       {/* <div className={styles.backgroundImg}> */}
       <div className={styles.videoBackground}>
         <video autoPlay muted>
@@ -24,7 +24,7 @@ function Home() {
         </div>
       </div>
       {/* </div> */}
-    </>
+    </div>
   );
 }
 

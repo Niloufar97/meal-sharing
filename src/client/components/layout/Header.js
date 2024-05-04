@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
 const Header = () => {
     return (
-        <header className="">
+        <header >
             <h1>Meal Sharing</h1>
             <nav>
                 <NavLink to="/">

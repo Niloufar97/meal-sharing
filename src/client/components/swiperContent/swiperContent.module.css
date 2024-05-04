@@ -32,3 +32,31 @@
     border: 1px solid gray;
     border-radius: 1rem;
 }
+@media only screen and (max-width: 599px) {
+    .imgContainer img{
+        width: 8rem;
+        height: 8rem;
+    }
+    .textContainer{
+        gap: 1rem;
+    }
+    .textContainer h2{
+        font-size: 1.2rem;
+    }
+    .textContainer p{
+        font-size: 0.6rem;
+    }
+    .layout{
+        width: 100%;
+    }
+}
+
+/* For tablets */
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+  /* Your tablet-specific CSS styles go here */
+}
+
+/* For desktops */
+@media only screen and (min-width: 992px) {
+  /* Your desktop-specific CSS styles go here */
+}

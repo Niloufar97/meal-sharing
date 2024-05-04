@@ -9,6 +9,9 @@
     color: #fff;
     text-align: center;
 } */
+.Containter{
+    width: 100%;
+}
 .videoBackground {
     position: relative;
     width: 100%;
@@ -30,7 +33,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); /* Adjust opacity as needed */
+    background-color: rgba(0, 0, 0, 0.2);
 }
 .content {
     height: 90%;
@@ -59,3 +62,22 @@
 .myLink:hover{
     font-weight: 600;
 }
+/* For mobile devices */
+@media only screen and (max-width: 599px) {
+    .content{
+        gap: 2rem;
+    }
+    .content h1{
+        font-size: 2rem;
+    }
+  }
+  
+  /* For tablets */
+  @media only screen and (min-width: 600px) and (max-width: 991px) {
+    /* Your tablet-specific CSS styles go here */
+  }
+  
+  /* For desktops */
+  @media only screen and (min-width: 992px) {
+    /* Your desktop-specific CSS styles go here */
+  }
