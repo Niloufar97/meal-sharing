@@ -26,10 +26,7 @@ const AddMealForm = () => {
         }),
       });
       if (response.ok) {
-        mutate("http://localhost:5000/api/meals");
-        setPopup(false);
-        alert("Food added successfully");
-
+        // mutate("http://localhost:5000/api/meals");
         setFormData({
           title: "",
           description: "",
@@ -40,6 +37,7 @@ const AddMealForm = () => {
           price: "",
           img: "",
         });
+        alert("Food added successfully");
       }
     } catch (error) {
       console.log(error);
