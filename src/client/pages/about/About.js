@@ -6,6 +6,10 @@ import AddMealForm from "../../components/hostMeal/AddMealForm.js";
 function About() {
   return (
     <div className={styles.container}>
+       <div className={styles.swiperContainer}>
+        {/* <h2>OUR BEST FOODS</h2> */}
+        <MySwiper />
+      </div>
       <div className={styles.browseMeals}>
         <h3>Dive into a World of Homemade Delights</h3>
         <p>
@@ -16,11 +20,6 @@ function About() {
           love. Reserve your perfect bite and savor the authentic flavors that
           only come from a home kitchen.
         </p>
-      </div>
-
-      <div className={styles.swiperContainer}>
-        <h2>OUR BEST FOODS</h2>
-        <MySwiper />
       </div>
 
       <div className={styles.hostAMeal}>

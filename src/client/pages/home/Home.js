@@ -6,12 +6,12 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 function Home() {
   return (
     <div className={styles.Containter}>
-      {/* <div className={styles.backgroundImg}> */}
-      <div className={styles.videoBackground}>
-        <video autoPlay muted>
+      <div className={styles.backgroundImg}>
+      {/* <div className={styles.videoBackground}> */}
+        {/* <video autoPlay muted>
           <source src="src\client\assets\videos\home.mp4" type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
         <div className={styles.overlay}></div>
         <div className={styles.content}>
           <h1>Welcome to Meal-Sharing </h1>
@@ -22,8 +22,8 @@ function Home() {
             </Link>
           </button>
         </div>
-      </div>
       {/* </div> */}
+      </div>
     </div>
   );
 }
