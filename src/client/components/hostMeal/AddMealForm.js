@@ -48,6 +48,7 @@ const AddMealForm = () => {
    
       <div className={styles.formContainer}>
         <form onSubmit={submitHandler}>
+          <h2>HOST A MEAL</h2>
           <input
             type="text"
             name="title"

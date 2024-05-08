@@ -35,7 +35,10 @@
     padding: 1rem;
     border: none;
     border-radius: 1rem;
-    background-color: #e2a47e;
+    background-color: #f3d9c9;
+}
+.formContainer form button:hover{
+    font-weight: 700;
 }
 @media only screen and (max-width: 599px) {
     .formContainer form{

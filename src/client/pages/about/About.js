@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./about.module.css";
 import MySwiper from "../../components/swiper/MySwiper.js";
 import AddMealForm from "../../components/hostMeal/AddMealForm.js";
+import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
 function About() {
   return (
@@ -20,6 +21,11 @@ function About() {
           love. Reserve your perfect bite and savor the authentic flavors that
           only come from a home kitchen.
         </p>
+        <button>
+            <Link className={styles.myLink} to="/meals">
+              Meals
+            </Link>
+          </button>
       </div>
 
       <div className={styles.hostAMeal}>

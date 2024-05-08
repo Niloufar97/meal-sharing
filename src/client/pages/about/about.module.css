@@ -19,7 +19,7 @@
     text-align: center;
     line-height: 2rem;
 }
-.hostAMeal button{
+.browseMeals button{
     width: 10rem;
     margin: 1rem auto;
     cursor: pointer;
@@ -28,6 +28,10 @@
     border-radius: 1rem;
     background-color: #f3d9c9;
 }
-.hostAMeal button:hover{
+.browseMeals button .myLink:hover{
     font-weight: 700;
+}
+button .myLink{
+    text-decoration: none;
+    color: black;
 }
