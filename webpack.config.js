@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import path from 'path';
-import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -60,7 +59,6 @@ export default {
       template: './public/index.html',
       favicon: './public/favicon.ico',
     }),
-    new CaseSensitivePathsPlugin(),
     new Dotenv({
       safe: false,
     }),
