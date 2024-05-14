@@ -44,7 +44,10 @@ function MealList() {
 
   const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(shouldFetch, fetcher);
-  if (error) return <div>Error in fetching data</div>;
+  if (error) {
+    console.log(error)
+    return <div>Error in fetching data</div>;
+  }
 
   return (
     <div className={styles.MealListComp}>
