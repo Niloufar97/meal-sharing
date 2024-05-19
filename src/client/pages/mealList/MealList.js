@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 import MealItem from "./MealItem.js";
 import styles from "./meal.module.css";
 import Filters from "../../components/filters/Filters.js";
@@ -21,8 +22,15 @@ function MealList() {
   });
   const [openFilters, setOpenFilters] = useState(false);
 
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
   const urlGenrator = () => {
-    let url = "http://localhost:5000/api/meals";
+    let url = `${
+      currentUrl.includes("localhost")
+        ? "http://localhost:5000"
+        : "https://meal-sharing-dhq2.onrender.com"
+    }/api/meals`;
     const params = new URLSearchParams();
 
     if (searchQuery) {
@@ -45,7 +53,7 @@ function MealList() {
   const shouldFetch = urlGenrator();
   const { data, error, isLoading } = useSWR(shouldFetch, fetcher);
   if (error) {
-    console.log(error)
+    console.log(error);
     return <div>Error in fetching data</div>;
   }
 
