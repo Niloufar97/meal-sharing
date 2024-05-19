@@ -21,7 +21,7 @@ You can see the Demo [here](https://meal-sharing-dhq2.onrender.com)
 
   - **MySQL**
 
-# How to Run the Project
+# ⌨️ How to Run the Project
 
 1. **Create a Postgres Database**
 
