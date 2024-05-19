@@ -50,7 +50,7 @@ export async function getAvailableReservations(
 export async function getMealWithTitle(title, response) {
   const mealWithTitle = await knex("meal")
     .select("*")
-    .where("title", "like", `%${title}%`);
+    .where(knex.raw('LOWER(title)'), 'like', `%${title.toLowerCase()}%`);
   response.data = mealWithTitle;
   response.status = 200;
   response.message = "ok";
