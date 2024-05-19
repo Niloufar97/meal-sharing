@@ -11,16 +11,44 @@ You can see the Demo [here](https://meal-sharing-dhq2.onrender.com)
 
 
 # 👩‍💻Technologies Used:
-React: A popular JavaScript library for building user interfaces.
+  - **React**
 
-Node.js: A JavaScript runtime built on Chrome's V8 engine, enabling server-side scripting and creating scalable network applications.
+  - **Node.js**
 
-Express: A minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications.
+  - **Express**
 
-MySQL: A widely-used relational database management system that enables efficient storage, retrieval, and management of data.
+  - **Knex.js**
 
+  - **MySQL**
 
-# 🖼️Image
-![MealSharing](https://github.com/Niloufar97/meal-sharing/assets/126332294/b3ba5963-8696-477e-9293-8c33b3ae923b)
+# How to Run the Project
 
+1. **Create a Postgres Database**
+
+   First, you need to create a Postgres database on your local machine. You can use `.sql` files to create the tables and insert data.
+
+2. **Install Dependencies**
+
+   Navigate to your project directory and install the necessary dependencies by running:
+
+   ```bash
+   npm install
+
+3. **Run the Backend Server**
+
+    Start the backend server with the following command:
+
+   ```bash
+   npm run server
+
+4. **Run the Client**
+
+    In another terminal window, run the client with:
+
+    ```bash
+    npm run client
+
+# 🖼️ Preview
+
+![MealSharing](https://github.com/Niloufar97/meal-sharing/assets/126332294/2994d411-017f-469c-9bb3-56b2abd26341)
 
