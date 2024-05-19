@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const allReviews = await knex("Review").select("*");
+    const allReviews = await knex("review").select("*");
     res.status(200).json({ data: allReviews, message: "ok" });
   } catch (err) {
     res.status(500).json({ message: "Internal server error" });
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const reviweID = +req.params.id;
-    const review = await knex("Review")
+    const review = await knex("review")
       .select("*")
       .where("review_id", "=", reviweID);
     res.status(200).json({ data: review, message: "ok" });
@@ -42,7 +42,7 @@ router.post("/", async (req,res) => {
         }
 
         const mealId = req.body.meal_id
-        const meal = await knex('Meal').select('*').where('meal_id', "=" , mealId);
+        const meal = await knex('meal').select('*').where('meal_id', "=" , mealId);
 
         if(meal.length === 0){
             return res.json({message : "Can't add a review for non-existing meal"})
@@ -51,7 +51,7 @@ router.post("/", async (req,res) => {
           ...req.body,
           created_date: new Date()
         }
-        await knex("Review")
+        await knex("review")
           .insert(mealReview)
     
        return res.status(200).json({ message: "Review added successfully" });
@@ -69,7 +69,7 @@ router.put("/:id", async (req, res) => {
       }
   
       const reviewID = +req.params.id;
-      const updatedCount = await knex("Review")
+      const updatedCount = await knex("review")
         .where("review_id", "=", reviewID)
         .update(req.body);
   
@@ -87,7 +87,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const reviweID = +req.params.id;
-    await knex("Review").where("review_id", "=", reviweID).del();
+    await knex("review").where("review_id", "=", reviweID).del();
     res.status(200).json({ message: "Review deleted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Internal server error" });

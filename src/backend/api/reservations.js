@@ -15,7 +15,7 @@ const reservationSchema = joi.object({
 // Returns all reservations
 router.get("/", async (req, res) => {
   try {
-    const allReservations = await knex("Reservation").select();
+    const allReservations = await knex("reservation").select();
     res.status(200).json({ data: allReservations, message: "ok" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
@@ -34,7 +34,7 @@ router.post("/", async(req, res) => {
         ...req.body,
         created_date: new Date()
     };
-    await knex("Reservation").insert(reservationData);
+    await knex("reservation").insert(reservationData);
 
     res.status(201).json({message : "Reservation added successfully"})
   }catch (error){
@@ -45,7 +45,7 @@ router.post("/", async(req, res) => {
 router.get("/:id" , async(req, res) => {
     try{
         const reservationId = +req.params.id;
-        const reservation = await knex("Reservation").where("reservation_id", "=", reservationId).select();
+        const reservation = await knex("reservation").where("reservation_id", "=", reservationId).select();
         if(reservation.length === 0){
             return res.status(404).json({message: "Reservation not found"})
         }
@@ -65,7 +65,7 @@ router.put("/:id" , async(req, res) =>{
             return res.status(400).json({errors : errorMessages})
         }
 
-        const updatedReservation = await knex("Reservation").where("reservation_id" , "=" , reservationId).update(req.body)
+        const updatedReservation = await knex("reservation").where("reservation_id" , "=" , reservationId).update(req.body)
         if(!updatedReservation){
             return res.status(404).json({message: " Can not find reservation with this id "})
         }
@@ -80,7 +80,7 @@ router.put("/:id" , async(req, res) =>{
 router.delete("/:id" , async(req, res) => {
     try{
         const reservationId = +req.params.id;
-       const deletedReservation = await knex("Reservation").where("reservation_id" , "=" , reservationId).del();
+       const deletedReservation = await knex("reservation").where("reservation_id" , "=" , reservationId).del();
        if(!deletedReservation){
         return res.status(404).json({message: " Can not find reservation with this id "})
        };

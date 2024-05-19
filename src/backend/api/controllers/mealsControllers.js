@@ -1,7 +1,7 @@
 import knex from "../../database.js";
 
 export async function getMealsUnderMaxPrice(maxPrice, response) {
-  const mealsUnderMaxPrice = await knex("Meal").where("price", "<", maxPrice);
+  const mealsUnderMaxPrice = await knex("meal").where("price", "<", maxPrice);
   response.data = mealsUnderMaxPrice;
   response.status = 200;
   response.message = "ok";
@@ -12,34 +12,34 @@ export async function getAvailableReservations(
   response
 ) {
   if (availableReservations === "true") {
-    const availableMeals = await knex("Meal")
+    const availableMeals = await knex("meal")
     .select(
-      "Meal.meal_id",
-      "Meal.title",
-      "Meal.img",
-      "Meal.price",
+      "meal.meal_id",
+      "meal.title",
+      "meal.img",
+      "meal.price",
       knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
       "max_reservations"
     )
-    .leftJoin("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
-    .groupBy("Meal.meal_id")
+    .leftJoin("reservation", "meal.meal_id", "=", "reservation.meal_id")
+    .groupBy("meal.meal_id")
     .havingRaw(
-      "COALESCE(SUM(number_of_guests), 0) < max_reservations OR COUNT(Reservation.meal_id) = 0"
+      "COALESCE(SUM(number_of_guests), 0) < max_reservations OR COUNT(reservation.meal_id) = 0"
     );
   response.data = availableMeals;
   response.status = 200;
   response.message = "ok";
   }
   if (availableReservations === "false") {
-    const unavilableMeals = await knex("Meal")
+    const unavilableMeals = await knex("meal")
       .select(
-        "Meal.meal_id",
-        "Meal.title",
+        "meal.meal_id",
+        "meal.title",
         knex.raw("SUM(number_of_guests) AS total_guests"),
         "max_reservations"
       )
-      .leftJoin("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
-      .groupBy("Meal.meal_id")
+      .leftJoin("reservation", "meal.meal_id", "=", "reservation.meal_id")
+      .groupBy("meal.meal_id")
       .havingRaw("SUM(number_of_guests) = max_reservations");
     response.data = unavilableMeals;
     response.status = 200;
@@ -48,7 +48,7 @@ export async function getAvailableReservations(
 };
 
 export async function getMealWithTitle(title, response) {
-  const mealWithTitle = await knex("Meal")
+  const mealWithTitle = await knex("meal")
     .select("*")
     .where("title", "like", `%${title}%`);
   response.data = mealWithTitle;
@@ -57,7 +57,7 @@ export async function getMealWithTitle(title, response) {
 };
 
 export async function getMealAfterDate(dateAfter, response) {
-  const mealAfterDate = await knex("Meal")
+  const mealAfterDate = await knex("meal")
     .select("*")
     .where("_when", ">", dateAfter);
   response.data = mealAfterDate;
@@ -66,7 +66,7 @@ export async function getMealAfterDate(dateAfter, response) {
 };
 
 export async function getMealBeforeDate(beforeDate, response) {
-  const mealBeforeDate = await knex("Meal")
+  const mealBeforeDate = await knex("meal")
     .select("*")
     .where("_when", "<", beforeDate);
   response.data = mealBeforeDate;
@@ -75,7 +75,7 @@ export async function getMealBeforeDate(beforeDate, response) {
 };
 
 export async function getLimitedMeals(limit, response) {
-  const limitedMeals = await knex("Meal")
+  const limitedMeals = await knex("meal")
     .select("*")
     .limit(limit);
   response.data = limitedMeals;
@@ -92,7 +92,7 @@ export async function getSortedMeals(sortKey, sortDir, response){
         response.message = "Invalid sort key";
         return
     }
-    const sortedMeals = await knex('Meal')
+    const sortedMeals = await knex('meal')
         .select('*')
         .orderBy(sortKey , sortDirection);
     response.data = sortedMeals;

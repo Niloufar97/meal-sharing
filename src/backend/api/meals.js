@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
     if (sortKey) await getSortedMeals(sortKey, sortDir, response);
 
     if (Object.keys(req.query).length === 0) {
-      const allMeals = await knex("Meal").select("*");
+      const allMeals = await knex("meal").select("*");
       response.data = allMeals;
     }
 
@@ -73,22 +73,22 @@ router.get("/", async (req, res) => {
 
 router.get("/:id/reviews", async (req, res) => {
   const mealId = +req.params.id;
-  const reviwesForMeal = await knex("Review")
-    .select("Review.title", "Review.description","Review.stars", "Meal.meal_id")
-    .join("Meal", "Meal.meal_id", "=", "Review.meal_id")
-    .where("Meal.meal_id", "=", mealId);
+  const reviwesForMeal = await knex("review")
+    .select("review.title", "review.description","review.stars", "meal.meal_id")
+    .join("meal", "meal.meal_id", "=", "review.meal_id")
+    .where("meal.meal_id", "=", mealId);
 
   res.status(200).json({ data: reviwesForMeal, message: "ok" });
 });
 
 router.get("/bestsellers", async (req, res) => {
   try {
-    const bestsellers = await knex("Meal")
-      .select("Meal.meal_id", "Meal.title", "Meal.description" , "Meal.img")
-      .avg("Review.stars as Average_Stars")
-      .join("Review", "Meal.meal_id", "=", "Review.meal_id")
-      .groupBy("Meal.meal_id")
-      .orderBy("Average_Stars", "desc")
+    const bestsellers = await knex("meal")
+      .select("meal.meal_id", "meal.title", "meal.description" , "meal.img")
+      .avg("review.stars as average_stars")
+      .join("review", "meal.meal_id", "=", "review.meal_id")
+      .groupBy("meal.meal_id")
+      .orderBy("average_stars", "desc")
       .limit(4);
 
     res.status(200).json({ data: bestsellers, message: "Top meals based on average stars" });
@@ -100,16 +100,16 @@ router.get("/bestsellers", async (req, res) => {
 router.get("/:id/available", async (req, res) => {
   try {
     const id = +req.params.id;
-    const availableMeals = await knex('Meal')
+    const availableMeals = await knex('meal')
       .select(
-        "Meal.max_reservations",
-        "Meal.title",
+        "meal.max_reservations",
+        "meal.title",
         knex.raw("COALESCE(SUM(number_of_guests), 0) AS total_guests"),
-        knex.raw("Meal.max_reservations - COALESCE(SUM(number_of_guests), 0) AS available_reservations")
+        knex.raw("meal.max_reservations - COALESCE(SUM(number_of_guests), 0) AS available_reservations")
       )
-      .leftJoin("Reservation", "Meal.meal_id", "=", "Reservation.meal_id")
-      .where("Meal.meal_id", id)
-      .groupBy("Meal.meal_id");
+      .leftJoin("reservation", "meal.meal_id", "=", "reservation.meal_id")
+      .where("meal.meal_id", id)
+      .groupBy("meal.meal_id");
 
     res.status(200).json({ data: availableMeals, message: "ok" });
   } catch (error) {
@@ -127,7 +127,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ errors: errorMessages });
     }
     const MealData = {...req.body , created_date: new Date()}
-    await knex("Meal").insert(MealData);
+    await knex("meal").insert(MealData);
 
     res.status(201).json({ message: "new meal added successfully" });
   } catch (err) {
@@ -140,7 +140,7 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const mealId = +req.params.id;
-    const selectedMeal = await knex("Meal")
+    const selectedMeal = await knex("meal")
       .where("meal_id", "=", mealId)
       .select();
     res.status(200).json({ data: selectedMeal, message: "ok" });
@@ -160,7 +160,7 @@ router.put("/:id", async (req, res) => {
     }
     const mealId = +req.params.id;
 
-    const mealToUpdate = await knex("Meal")
+    const mealToUpdate = await knex("meal")
       .where("meal_id", "=", mealId)
       .update(req.body);
     if (!mealToUpdate) {
@@ -177,7 +177,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const mealId = +req.params.id;
-    const mealToDelete = await knex("Meal").where("meal_id", "=", mealId).del();
+    const mealToDelete = await knex("meal").where("meal_id", "=", mealId).del();
 
     if (!mealToDelete) {
       return res.json({ message: "There is no meal with this Id" });

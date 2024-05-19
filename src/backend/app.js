@@ -53,7 +53,7 @@ app.get("/future-meals", async (req, res) => {
 app.get("/past-meals", async (req, res) => {
   try{
     const today = new Date();
-    const pastMeals = await knex("Meal")
+    const pastMeals = await knex("meal")
       .where("_when", "<", today)
       .select()
     
@@ -68,7 +68,7 @@ app.get("/past-meals", async (req, res) => {
 //Respond with all meals sorted by ID
 app.get("/all-meals", async (req, res) => {
   try {
-    const allMeals = await knex("Meal")
+    const allMeals = await knex("meal")
       .select()
       .orderBy('meal_id');
     
@@ -82,7 +82,7 @@ app.get("/all-meals", async (req, res) => {
 // Respond with the first meal (meaning with the minimum id)
 app.get("/first-meal" , async (req, res) => {
   try{
-    const firstMeal = await knex("Meal")
+    const firstMeal = await knex("meal")
       .first()
   
     res.status(200).json({data:firstMeal , message: "ok"});
@@ -96,7 +96,7 @@ app.get("/first-meal" , async (req, res) => {
 // Respond with the last meal (meaning with the maximum id)
 app.get("/last-meal" , async (req, res) => {
   try{
-    const lastMeal = await knex("Meal")
+    const lastMeal = await knex("meal")
      .orderBy("meal_id" , "desc")
      .first()
 
