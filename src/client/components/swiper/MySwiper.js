@@ -11,23 +11,25 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useSWR from "swr";
-import SwiperContent from '../swiperContent/SwiperContent.js'
-import './swiper.css'
+import SwiperContent from "../swiperContent/SwiperContent.js";
+import "./swiper.css";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
 };
 
 export default function MySwiper() {
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
   const url = `${
     currentUrl.includes("localhost")
       ? "http://localhost:5000"
       : "https://meal-sharing-dhq2.onrender.com"
   }/api/meals/bestsellers`;
-  const { data, error, isLoading } = useSWR(
-    url,
-    fetcher
-  );
+
+  const { data, error, isLoading } = useSWR(url, fetcher);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   console.log(data);
@@ -56,5 +58,4 @@ export default function MySwiper() {
       </Swiper>
     </section>
   );
-
 }
