@@ -23,6 +23,8 @@ function formatDateTime(dateTimeString) {
 }
 
 function MealDetail() {
+  const { id } = useParams();
+
   const location = useLocation();
   const currentUrl = location.pathname + location.search;
   const url = `${
@@ -30,8 +32,7 @@ function MealDetail() {
       ? "http://localhost:5000"
       : "https://meal-sharing-dhq2.onrender.com"
   }/api/meals/${id}`;
-
-  const { id } = useParams();
+  
   const { data, error, isLoading } = useSWR(
     url,
     fetcher
