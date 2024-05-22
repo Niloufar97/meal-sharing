@@ -2,17 +2,29 @@ import React from "react";
 import styles from "./reviews.module.css";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
+
 function ReviewForm({ id }) {
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     meal_id: "",
     stars: "",
   });
+
+  let url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/reviews`;
+
   const submitHander = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/reviews", {
+      const response = await fetch( url , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +35,7 @@ function ReviewForm({ id }) {
         }),
       });
       if (response.ok) {
-        mutate("http://localhost:5000/api/reviews");
+        mutate(url);
         alert("Review added successfully");
         setFormData({ title: "", description: "", meal_id: "", stars: "" });
       }

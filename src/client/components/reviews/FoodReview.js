@@ -2,14 +2,25 @@ import React from "react";
 import useSWR from "swr";
 import styles from "./reviews.module.css";
 import ReviewForm from "./ReviewForm.js";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
 };
 
 function FoodReview({ id }) {
+  
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
+  let url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/meals/${id}/reviews`;
+
   const { data, error, isLoading } = useSWR(
-    `http://localhost:5000/api/meals/${id}/reviews`,
+    url,
     fetcher
   );
 

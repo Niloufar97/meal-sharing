@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useSWR from 'swr'
 import styles from './reservation.module.css'
 import ReservationForm from './ReservationForm.js'
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 
 const fetcher = (url) => {
@@ -9,7 +10,16 @@ const fetcher = (url) => {
 }
 
 function Reservation({id}) {
-    const {data , error, isLoading} = useSWR(`http://localhost:5000/api/meals/${id}/available`, fetcher);
+    const location = useLocation();
+    const currentUrl = location.pathname + location.search;
+
+    let url = `${
+        currentUrl.includes("localhost")
+          ? "http://localhost:5000"
+          : "https://meal-sharing-dhq2.onrender.com"
+      }/api/meals/${id}/available`;
+
+    const {data , error, isLoading} = useSWR(url, fetcher);
     const [popup , setPopup] = useState(false);
 
     const togglePopup = () => {

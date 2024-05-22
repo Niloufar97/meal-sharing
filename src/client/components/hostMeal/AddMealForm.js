@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './AddMealForm.module.css'
 import { useState } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const AddMealForm = () => {
   const [formData, setFormData] = useState({
@@ -13,10 +14,20 @@ const AddMealForm = () => {
     price: "",
     img: "",
   });
+
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
+  const url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/meals`;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/meals", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

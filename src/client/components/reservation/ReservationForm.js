@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./reservation.module.css";
 import useSWR, { mutate } from "swr";
 import { useState  } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 function ReservationForm({ id, setPopup, mealTitle}) {
   const [formData, setFormData] = useState({
@@ -13,10 +14,19 @@ function ReservationForm({ id, setPopup, mealTitle}) {
     created_date: new Date(),
   });
 
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+
+  const url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/reservations`;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/reservations", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +37,7 @@ function ReservationForm({ id, setPopup, mealTitle}) {
         }),
       });
       if (response.ok) {
-        mutate("http://localhost:5000/api/reservations");
+        mutate(url);
         setPopup(false)
         alert("Reserved successfully");
 
