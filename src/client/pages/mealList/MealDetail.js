@@ -4,26 +4,41 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
 import useSWR from "swr";
 import Reservation from "../../components/reservation/Reservation.js";
 import FoodReview from "../../components/reviews/FoodReview.js";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const fetcher = (url) => {
   return fetch(url).then((res) => res.json());
 };
 
 function formatDateTime(dateTimeString) {
-    const options = { year: 'numeric', month: 'short', day: '2-digit', hour: 'numeric', minute: 'numeric' };
-    const dateTime = new Date(dateTimeString);
-    return dateTime.toLocaleDateString('en-GB', options);
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const dateTime = new Date(dateTimeString);
+  return dateTime.toLocaleDateString("en-GB", options);
 }
 
 function MealDetail() {
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+  const url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/meals/${id}`;
+
   const { id } = useParams();
   const { data, error, isLoading } = useSWR(
-    `http://localhost:5000/api/meals/${id}`,
+    url,
     fetcher
   );
   if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading...</p>;
-console.log(data)
+  console.log(data);
   return (
     <div className={styles.MealDetailComp}>
       <section className={styles.mealDetailContainer}>
@@ -34,12 +49,12 @@ console.log(data)
           <p>When: {formatDateTime(data.data[0]._when)}</p>
           <p>Where: {data.data[0].location}</p>
           <p>Price: {data.data[0].price}</p>
-          <Reservation id={data.data[0].meal_id}/>
+          <Reservation id={data.data[0].meal_id} />
         </div>
       </section>
       <section className={styles.reviewContainer}>
         <h2>Reviews</h2>
-        <FoodReview id={id}/>
+        <FoodReview id={id} />
       </section>
     </div>
   );
