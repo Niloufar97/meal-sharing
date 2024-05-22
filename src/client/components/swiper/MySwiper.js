@@ -19,8 +19,13 @@ const fetcher = (url) => {
 };
 
 export default function MySwiper() {
+  const url = `${
+    currentUrl.includes("localhost")
+      ? "http://localhost:5000"
+      : "https://meal-sharing-dhq2.onrender.com"
+  }/api/meals/bestsellers`;
   const { data, error, isLoading } = useSWR(
-    "http://localhost:5000/api/meals/bestsellers",
+    url,
     fetcher
   );
   if (isLoading) return <div>Loading...</div>;
