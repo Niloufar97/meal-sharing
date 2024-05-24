@@ -26,22 +26,26 @@ You can see the Demo [here](https://meal-sharing-dhq2.onrender.com)
 1. **Create a Postgres Database**
 
    First, you need to create a Postgres database on your local machine. You can use `.sql` files to create the tables and insert data.
+   
+2. **Define Your Environment Variables**
 
-2. **Install Dependencies**
+   Create a .env file in your project directory, copy the contents of .env.example into it, and update the values as needed.
+
+3. **Install Dependencies**
 
    Navigate to your project directory and install the necessary dependencies by running:
 
    ```bash
    npm install
 
-3. **Run the Backend Server**
+4. **Run the Backend Server**
 
     Start the backend server with the following command:
 
    ```bash
    npm run server
 
-4. **Run the Client**
+5. **Run the Client**
 
     In another terminal window, run the client with:
 
